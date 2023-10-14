@@ -4,8 +4,7 @@ const App = {};
 //защищенные св-ва класса
 class User {
     //защищенное св-во  name
-    #
-    _name;
+    #_name;
     constructor(name) {
         this.#_name = name;
     }

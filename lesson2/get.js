@@ -23,8 +23,8 @@ auto.horsePowers = -10; //установка значения св-ва horsePow
 //а что будет если добавить комментарий для сеттера
 auto.horsePowers = 10; //error
 //приватные св-ва.Эти св-ва начинаются со знака # и имеют защиту на уровне языка
-class AutoMobile {#
-    horsePowers = 0;
+class AutoMobile {
+    #horsePowers = 0;
     set horsePowers(value) {
         if (value < 0) throw new Error("Отрицательное кол-во сил");
         this.#horsePowers = value;

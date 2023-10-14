@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="item-input" placeholder="введите пункт">
+    <button id="add-button">добавить</button>
+    <ul id="item-list"></ul>
+    <script>
+        //получаем ссылки на элементы страницы
+        const inputField = document.getElementById('item-input');
+        const addButton = document.getElementById('add-button');
+        const itemList = document.getElementById('item-list');
+        //получаем сохраненный список покупок из localStorage
+        let shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+        //функция для обновления списка покупок на страницу и сохранения его в localStorage
+        const updateShoppingList = () => {
+            //очищаем список покупок на странице
+            itemList.innerHTML = '';
+            //создаем новые элементы списка для каждого пункта
+            shoppingList.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item;
+                itemList.append(listItem);
+            });
+            //сохраняем обновленный список покупок в localStorage
+            localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+        };
+        //обработчик события для кнопки добавить
+        addButton.addEventListener('click', () => {
+            const newItem = inputField.value.trim();
+            if (newItem !== '') {
+                //добавляем новй пункт в список покупок
+                shoppingList.push(newItem);
+                inputField.value = '';
+                updateShoppingList();
+            }
+        });
+        //обновляем список покупок при загрузке страницы
+        updateShoppingList();
+
+
+    </script>
+</body>
+
+</html>
